@@ -1,0 +1,19 @@
+@startuml
+
+title Stavový automat záchodu
+
+state "Plnění zásobníku" as Filling
+state "Zásobník plný" as Full
+state "Kompletní spláchnutí" as CompleteFlush
+state "Částečné spláchnutí" as HalfFlush
+
+[*] --> Filling
+Filling --> Full : zásobník naplněn
+Filling --> CompleteFlush : stisk tlačítka komplet
+Filling --> HalfFlush : stisk tlačítka poloviční
+Full --> CompleteFlush : stisk tlačítka komplet
+Full --> HalfFlush : stisk tlačítka poloviční
+CompleteFlush --> Filling : zásobník prázdný
+HalfFlush --> Filling : zásobník prázdný || protekla polovina
+
+@enduml

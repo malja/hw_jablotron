@@ -1,0 +1,77 @@
+menu "Vstupní periferie"
+
+    config VALVE_INPUT_PIN
+        int "PIN pro ovládání vstupního ventilu"
+        default 1
+        range 1 25
+        help
+            Číslo pinu používaného pro ovládání vstupního ventilu. Po přivedení napětí je ventil otevřen a následně se
+            motor vypne. Při přerušení napětí se ventil opět uzavře.
+
+    config VALVE_OUTPUT_PIN
+        int "PIN pro ovládání výstupního ventilu"
+        default 4
+        range 1 25
+        help
+            Číslo pinu používaného pro ovládání výstupního ventilu. Po přivedení napětí je ventil otevřen a následně se
+            motor vypne. Při přerušení napětí se ventil opět uzavře.
+
+    config BUTTON_FULL_FLUSH_PIN
+        int "PIN tlačítka pro plné spláchnutí"
+        default 5
+        range 1 25
+        help
+            Číslo pinu používaného pro získání vstupu z tlačítka kompletního spláchnutí.
+
+    config BUTTON_HALF_FLUSH_PIN
+        int "PIN tlačítka pro částečné spláchnutí"
+        default 6
+        range 1 25
+        help
+            Číslo pinu používaného pro získání vstupu z tlačítka částečného spláchnutí.
+
+endmenu
+
+menu "Výška vodní hladiny"
+    config WATER_LEVEL_POWER_PIN
+    int "PIN ovládající napájení"
+    default 2
+    range 1 25
+    help
+        Číslo pinu používaného pro napájení (resp. ovládání napájení) senzoru výšky vodní hladiny.
+
+    config WATER_LEVEL_READ_PIN
+    int "PIN pro vyčítání hodnot"
+    default 3
+    range 1 25
+    help
+        Číslo pinu používaného pro vyčítání hodnoty ze senzoru výšky vodní hladiny. Musí jít o analogový pin.
+endmenu
+
+menu "Kalibrace"
+
+    config WATER_LEVEL_EMPTY_THRESHOLD
+    int "Spodní hranice výšky vodní hladiny"
+    default 50
+    range 0 1024
+    help
+        Jaká nejvyšší hodnota vyčtená ze senzoru výšky vodní hladiny bude považovaná za prázdnou nádobu?
+
+    config WATER_LEVEL_FULL_THRESHOLD
+    int "Horní hranice výšky vodní hladiny"
+    default 600
+    range 0 1024
+    help
+        Jaká nejmenší hodnota vyčtená ze senzoru výšky vodní hladiny bude považovaná za plnou nádobu?
+
+endmenu
+
+menu "Stavový automat"
+    config STATE_MACHINE_STATES_COUNT
+    int "Počet záznamů stavového automatu"
+    default 7
+    range 1 50
+    help
+        Počet záznamů v přechodové tabulce stavového automatu.
+
+endmenu
